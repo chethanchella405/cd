@@ -1,0 +1,136 @@
+                        Maven
+
+--why maven
+it is building tool it uses in java-based projexts. maven helps in getting right jar files for different versions of seperate packages.
+no need to visit official websites to download the dependency. we can i 3rd party.
+
+--what is maven
+it is popular opensoruce build tool developed by apache groups. it is written in java and used to build projects in c#, scala, ruby e.t.c
+it simplifies day to day work of java developers and helps them in their projects
+in this process it takes care 
+builds,
+dependencies,
+reports,
+distribution,
+releases,
+mailing list.
+
+--maven repository
+it refer to the directories of packaged jar files that contain metadata. the metadata refers to the pom files relevant to each project. this metadata is what allows mavan to download dependencies.
+
+3 types.
+local repo
+remote repo
+central repo
+
+---basic concepts of maven
+pom) project object model refers to the xml files that have all the information regarding project and configuration details.
+the xml file is the project home directory. maven searches for the POM in the current directory when any tasks is to be executed.
+
+---build life cycle
+it consists of a sequence of build phases, and each build phase consists of a sequence of goals
+
+---maven architecture
+maven to the pom files to the maven repository
+             dependies
+             plugins
+              lifecycle and phases and goals
+              build profile
+
+---Maven build life cycle.
+compile->testcompile->test->pacakage->integration-test->verify->install->deploy.
+
+--phases of a clean life cycle.
+pre-clean
+clean
+post-clean
+
+groupid: is a unque name of a company or group which need to creat projecct
+artifactid: is auniqye project id/name
+
+
+---item               default
+soucecode           src/java
+
+
+
+super pom
+it is default POM, all poms inherit from a parent or default, this base pom is known as the super POM and contains values in herited by default.
+
+
+
+Maveen example in linux (Eample java program)
+---mvn archetypr:generate         used to download nece plugins and pom.xml and src
+then compile the java code     ----mvn compile
+in the devops folder   then after copile we get target folder in artifact id folder
+then java file converted into .file then need to convert into jarfile before that we need to test the file.    ----mvn test
+in devops folder(artifactid folder)
+
+after test need to create jar file.  ---mvn pacakge
+.jar created now.
+need to place that jar file into local repo  ---mvn install 
+
+maveen archetype:generate    used to get the code
+mvn compile     used to compile the code
+mvn test      used to convert the test of that file and it will convert              into .file
+mvn package   used to convert into jarfile
+mvn install    used to install the code in local repository.
+
+
+
+
+
+Git acccess token "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" chethanchella405
+docker access token "dckr_pat_PzLVs-n8SWIlgb_In16lFdlKfck"    chellachethan
+
+
+-------------------------------------------------------------------
+      git basics
+----------------------------------
+Git basics
+
+it is a version control system. 
+disurbuted and centralised system differnece...
+----git init      to intialize git repo in particl folder
+.git was created
+$ ls .git
+HEAD  config  description  hooks/  info/  objects/  refs/
+above are ceated in .git folder
+
+---git status   to see the tracked and untracked files
+---git add <filename>   to track the file
+track means git known about the file.
+untrack means it doesn't the file.
+
+---git diff   it gives the modification on the file 
+---git commit   core block unit of a git project timeline. it can capture the state of a project at that point in time.
+---git log   it gives the logs of commits i git
+--- git reset --hard/soft <headnumber>
+git reset --soft : Known as a soft reset, this updates the current branch tip to the specified commit and makes no other changes
+git reset --hard : specify the commit and it delete the above commits and give the output at that stage of commit.
+
+Git branching and merging
+---git branch <name>     create a branch
+---git checkout <branchname>   to change the branch
+if you changed or commited the code in one branch it cannot effet on the other branch (dont see in cat command) check in vim or git log command
+
+Merging
+if you are not able to merge in the other branches except master the output will shows all are uptodate
+need to merge only in master branch
+---git merge <branchname from where need to merge>
+then you can check in vi or git log  you can find the changes.
+
+---git clone <repo url>    to download entire files in the repo
+ 
+before pushing from local to central need to follow below steps
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/chethanchella405/cd.git
+git push -u origin main
+
+git pull command is used to pull the file from one branch to other 
+
+
+-------------------------------------------------------------------

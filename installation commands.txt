@@ -1,0 +1,155 @@
+---Install Jenkins on linux instances
+
+Ensure that your software packages are up to date on your instance by using the following command to perform a quick software update:
+[ec2-user ~]$ sudo yum update –y
+
+Add the Jenkins repo using the following command:
+[ec2-user ~]$ sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+Import a key file from Jenkins-CI to enable installation from the package:
+[ec2-user ~]$ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+[ec2-user ~]$ sudo yum upgrade
+
+Install Java (Amazon Linux 2):
+[ec2-user ~]$ sudo amazon-linux-extras install java-openjdk11 -y
+
+Install Java (Amazon Linux 2023):find - 
+[ec2-user ~]$ sudo dnf install java-11-amazon-corretto -y
+
+Install Jenkins:
+[ec2-user ~]$ sudo yum install jenkins -y
+
+Enable the Jenkins service to start at boot:
+[ec2-user ~]$ sudo systemctl enable jenkins
+
+Start Jenkins as a service:
+[ec2-user ~]$ sudo systemctl start jenkins
+
+You can check the status of the Jenkins service using the command:
+[ec2-user ~]$ sudo systemctl status jenkins
+
+
+to change jenkins port find jenkins.service and change port in environment variables.
+
+ docker run -d --name 747b923ac93a -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11    ----for docker
+                       containerID
+if not found intial password while created with docker, use docker logs <containerID> then you get.
+
+
+-----------------------------------------------------------------
+
+----Docker installation on linux ec2
+
+update yum
+--sudo yum install docker
+if you need to check --docker info
+----sudo service docker start       to start docker
+----sudo systemctl status docker.service      to check docker status
+
+sudo systemctl start docker.service #<-- start the service
+sudo systemctl stop docker.service #<-- stop the service
+sudo systemctl restart docker.service #<-- restart the service
+sudo systemctl status docker.service #<-- get the service status
+
+
+
+----------------------------------------------------------------
+
+
+Ansible installation and configuration
+
+updates yum  ---sudo yum update
+install python3  ---sudo yum install pyhton3-pip
+check pip and python version
+
+((wget https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz
+# tar xJf Python-3.11.0.tar.xz
+# cd Python-3.11.0
+# ./configure))      if pyhton installtion issue
+sudo yum install python
+
+
+same for both master and slave 
+-------
+install ansible on master  ---pip install ansible
+check version(for conformation)
+try to connect server(not worked now)  ssh username@ipaddress
+open root folder then .ssh folder    just open the folder
+generate ssh key  ---ssh-keygen
+enter
+enter
+
+now check extra 2 floder are created one is public and private key files.
+copy public file
+it in the master path
+------
+
+in parallel the slave open root and .ssh folder
+there is authorized file open it and paste the pubkey file which is copiedin master and exit
+-----
+
+now in master try to connect using   ---ssh username@ipaddress
+
+now find ansible host in master and configure the ipaddress of the slaves in different like we, server, e.t.c
+
+ping the ip address
+-----ansible -m ping
+
+
+
+----------------------------------------
+         Tomcat Installation
+install java
+install tar file of tomcat for example
+---- wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.13/bin/apache-tomcat-10.1.13.tar.gz
+unzip tar file
+---sudo tar xf apache-tomcat-10.1.13.tar.gz
+---mv apache-tomcat-10.1.13 tomcat 
+--- cd tomcat
+--- cd bin
+---./startup.sh      for starting tomcat server
+---./shutdown.sh     for stopping tomcat server
+open in default port 8080
+
+for editing the tomcat
+--- find / -name context.xml           context.xml hint in 404 error
+find    /tomcat/webapps/manager/META-INF/context.xml   both manager and host_manage then
+--- vi /tomcat/webapps/manager/META-INF/context.xml  also host_manager
+at the IP address values we start with  <!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+in both host_manager and manager.
+------
+need to change username and password fo config file
+/tomcat/conf
+try to write roles and password and username  in this file
+and also admin and admin-gui in password and usename
+
+
+
+----------------------------------------------
+
+   Maven Installation on linux.
+Install Apache Maven on your EC2 instance. First, enter the following to add a repository with a Maven package.
+-----sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+ 
+Enter the following to set the version number for the packages.
+----sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+
+Install maveen
+---sudo yum install -y apache-maven
+
+The Gremlin libraries require Java 8. Enter the following to install Java 8 on your EC2 instance.
+--- sudo yum install java-1.8.0-devel
+
+Enter the following to set Java 8 as the default runtime on your EC2 instance.
+----sudo /usr/sbin/alternatives --config java
+(Check the java 8 version in given numbers and click)
+
+
+mvn --version   (to check the verison of maven)
+
+----------------------------------------------------------------
+
+
+

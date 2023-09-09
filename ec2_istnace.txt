@@ -1,0 +1,51 @@
+-------for printing the name in the web browser just used to check the elb is working or not
+for linux machine
+#/bin/bash
+
+sudo yum update -y
+sudo yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+cd /var/www/html
+
+if you used in the linux then you write html code
+create index.html file in var/www/html
+---
+<html>
+<head>
+    <title>Welcome to My Web App</title>
+</head>
+<body>
+    <h1>Hello, I am Chethan!</h1>
+</body>
+</html>
+-------------
+
+echo "<p>Welcome to Peter.in</p><h1>This is machine 1</h1>">index.html
+
+
+create vpc then subnets for the vpc
+create igw
+create rute table and assign public subnets
+   then add igw to that route table in routes section.
+
+lb  classic lb balancer
+port defa 80 http
+select subnets 2 public
+new securiyt group
+
+changes in dns hostname  in vpc block
+
+--------------------------------------
+VPC Peering (used to ping/connect private instances in public inc)
+create vpcs, subnets, route table, igw(internetgateway).. create ec2 instances.
+then edit route table(subnet association accept which subnets connected and add routes for igw)
+then go to peer connections create one then add accepter as a pubilc vpc and requester as private vpc) accept that request.
+again come to the route table and edit routes to add peering connection on both the route the tables. and be carefull on adding ip address there to add opp vpc cidr values.
+
+
+and must check ssh connection is working or not.
+-------------------------------------------------- 
+
+        AWS elastic beanstack
+
